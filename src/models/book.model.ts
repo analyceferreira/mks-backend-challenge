@@ -11,9 +11,9 @@ export class BookModel {
     @Column()
     author: string;
     
-    @Column('int')
+    @Column()
     description: string;
 
-    @Column()
+    @Column('int')
     number_pages: number;
 }
