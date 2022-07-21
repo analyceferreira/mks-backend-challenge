@@ -19,11 +19,10 @@ const typeorm_2 = require("typeorm");
 const book_model_1 = require("../models/book.model");
 const book_schema_1 = require("../schemas/book.schema");
 const swagger_1 = require("@nestjs/swagger");
-const getOne_swagger_1 = require("../swegger/getOne.swagger");
-const getAll_swagger_1 = require("../swegger/getAll.swagger");
-const create_swagger_1 = require("../swegger/create.swagger");
-const update_swagger_1 = require("../swegger/update.swagger");
-const delete_swagger_1 = require("../swegger/delete.swagger");
+const getOne_swagger_1 = require("../swagger/getOne.swagger");
+const getAll_swagger_1 = require("../swagger/getAll.swagger");
+const create_swagger_1 = require("../swagger/create.swagger");
+const update_swagger_1 = require("../swagger/update.swagger");
 const processEntryInformation = (info) => {
     const replace = /-/gi;
     return info.replace(replace, " ");
@@ -120,6 +119,24 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'Get a specific books from the catalog'
     }),
+    (0, swagger_1.ApiParam)({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }`
+            }
+        }
+    }),
     (0, swagger_1.ApiResponse)({
         status: 200,
         description: 'Book return successful',
@@ -138,6 +155,24 @@ __decorate([
     (0, common_1.Patch)(':title'),
     (0, swagger_1.ApiOperation)({
         summary: 'Change a books from the catalog'
+    }),
+    (0, swagger_1.ApiParam)({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }`
+            }
+        }
     }),
     (0, swagger_1.ApiResponse)({
         status: 200,
@@ -159,10 +194,27 @@ __decorate([
     (0, swagger_1.ApiOperation)({
         summary: 'Delete a books from the catalog'
     }),
+    (0, swagger_1.ApiParam)({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{"message": "Book delete successful", "book":{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }}`
+            }
+        }
+    }),
     (0, swagger_1.ApiResponse)({
         status: 204,
         description: 'Book delete successful',
-        type: delete_swagger_1.deleteSwagger,
     }),
     (0, swagger_1.ApiResponse)({
         status: 404,

@@ -3,12 +3,12 @@ import { InjectRepository } from "@nestjs/typeorm"
 import { Repository } from "typeorm"
 import { BookModel } from "src/models/book.model"
 import { BookSchema } from "src/schemas/book.schema";
-import { ApiOperation, ApiResponse, ApiTags } from "@nestjs/swagger";
-import { getOneSwagger } from "src/swegger/getOne.swagger";
-import { getAllSwagger } from "src/swegger/getAll.swagger";
-import { createSwagger } from "src/swegger/create.swagger";
-import { updateSwagger } from "src/swegger/update.swagger";
-import { deleteSwagger } from "src/swegger/delete.swagger";
+import { ApiOperation, ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
+import { getOneSwagger } from "src/swagger/getOne.swagger";
+import { getAllSwagger } from "src/swagger/getAll.swagger";
+import { createSwagger } from "src/swagger/create.swagger";
+import { updateSwagger } from "src/swagger/update.swagger";
+import { deleteSwagger } from "src/swagger/delete.swagger";
 
 
 
@@ -55,6 +55,7 @@ export class BookController {
         status: 400, 
         description: 'Invalid parameters'
     })
+
     public async create(@Body() body: BookSchema): Promise<{data: BookModel}> {
         const bookCreated = await this.model.save(body)
         return {data: bookCreated };
@@ -80,6 +81,24 @@ export class BookController {
     @ApiOperation({ 
         summary:'Get a specific books from the catalog'
     })
+    @ApiParam({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }`
+            }
+        }
+    })
     @ApiResponse({ 
         status: 200, 
         description: 'Book return successful',
@@ -103,6 +122,24 @@ export class BookController {
     @Patch(':title')
     @ApiOperation({ 
         summary:'Change a books from the catalog'
+    })
+    @ApiParam({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }`
+            }
+        }
     })
     @ApiResponse({ 
         status: 200, 
@@ -138,10 +175,27 @@ export class BookController {
     @ApiOperation({ 
         summary:'Delete a books from the catalog'
     })
+    @ApiParam({
+        name: "title",
+        description: `Send the book title in the request parameter separated by "-"`,
+        allowEmptyValue: false,
+        examples: {
+            a: {
+                summary: "https://book-catalog-challenge.herokuapp.com/api/books/sol-do-amanha",
+                value: "Book Sol do Amanhã",
+                description: `{"message": "Book delete successful", "book":{
+                    "id": 1, 
+                    "title": "Sol do Amanhã", 
+                    "author": "anonymous", 
+                    "description": "Any description here", 
+                    "number_pages": 20
+                  }}`
+            }
+        }
+    })
     @ApiResponse({ 
         status: 204, 
         description: 'Book delete successful',
-        type: deleteSwagger,
     })
     @ApiResponse({ 
         status: 404, 
