@@ -9,7 +9,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.AppModule = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("@nestjs/typeorm");
-const app_controller_1 = require("./app.controller");
 const book_module_1 = require("./modules/book.module");
 let AppModule = class AppModule {
 };
@@ -20,7 +19,6 @@ AppModule = __decorate([
                 "type": "sqlite",
                 "entities": ["dist/**/*.model{.js, .ts}"],
             })],
-        controllers: [app_controller_1.AppController],
     })
 ], AppModule);
 exports.AppModule = AppModule;
