@@ -13,9 +13,6 @@ export declare class BookController {
     getOne(title: string): Promise<{
         data: BookModel;
     }>;
-    getBy(title: string): Promise<{
-        data: BookModel[];
-    }>;
     update(title: string, body: BookSchema): Promise<{
         data: string;
     }>;

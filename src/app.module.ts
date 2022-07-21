@@ -7,7 +7,6 @@ import { BookModule } from './modules/book.module';
   imports: [BookModule, TypeOrmModule.forRoot({
     "database": "db.sql",
     "type": "sqlite",
-    "synchronize": true,
     "entities": ["dist/**/*.model{.js, .ts}"]
   })],
 })

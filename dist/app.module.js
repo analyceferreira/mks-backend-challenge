@@ -17,7 +17,6 @@ AppModule = __decorate([
         imports: [book_module_1.BookModule, typeorm_1.TypeOrmModule.forRoot({
                 "database": "db.sql",
                 "type": "sqlite",
-                "synchronize": true,
                 "entities": ["dist/**/*.model{.js, .ts}"]
             })],
     })

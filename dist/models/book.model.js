@@ -10,27 +10,33 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookModel = void 0;
+const swagger_1 = require("@nestjs/swagger");
 const typeorm_1 = require("typeorm");
 let BookModel = class BookModel {
 };
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Number)
 ], BookModel.prototype, "id", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], BookModel.prototype, "title", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], BookModel.prototype, "author", void 0);
 __decorate([
     (0, typeorm_1.Column)(),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", String)
 ], BookModel.prototype, "description", void 0);
 __decorate([
     (0, typeorm_1.Column)('int'),
+    (0, swagger_1.ApiProperty)(),
     __metadata("design:type", Number)
 ], BookModel.prototype, "number_pages", void 0);
 BookModel = __decorate([
